@@ -1,0 +1,114 @@
+#Calculator
+import os
+
+
+# Here are comment system, if line has problem I write comments, thought if I come back the line.
+""" tämä on dokumentaatio ja kuvaa viraalisesti mitä funktio tekee"""
+
+
+def multiply(a, b):
+    """ These two chapters are multiplied together  """
+    return a * b
+
+
+def add(a, b):
+    """ These two chapters are added together"""
+
+    return a + b
+
+
+def divide(a, b):
+    """ These two chapters are divided together"""
+    if b == 0:
+        return "Error: cannot divide by zero"
+    return a / b
+
+
+def subtract(a, b):
+    """ These a, b subtrating """
+    return a - b
+
+
+def power_root(a, b):
+    """ potenssi kerronta systeemi"""
+    return a ** b
+
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+print(f"{"Blue"}=== Calculator ==={"reset"}")
+print("multiply, add, divide, subtract, power_root")
+print("C = Clear, H = history, Q = Quit\n")
+calculation_history = []
+last_result = None
+
+
+while True:
+    choice = input("Enter choice:").upper()
+
+    # Clear
+    if choice == "C":
+        clear_screen()
+        calculation_history.clear()
+        print("calculator cleared!")
+        continue
+
+    # History
+    if choice == "H":
+        if calculation_history:
+            print("\n=== Calculation History")
+            for calc in calculation_history:
+                print(calc)
+            print("------------------")
+    else:
+        print("no history yeat")
+        continue
+
+    # quit
+    if choice == "Q":
+        print("Goodbye!")
+        break
+
+        # calculate
+    choice = input("Enter choice (multiply/add/divide/subtract/power_root)")
+    if choice in ("multiply", "add", "divide", "subtract", "power_root"):
+        try:
+            num1 = float(input("Enter first number"))
+            num2 = float(input("Enter second number"))
+        except ValueError:
+            print("invalid input")
+            continue
+        if choice == "multiply":
+            print(num1, "*", num2, "=", multiply(num1, num2))
+        elif choice == "add":
+            print(num1, "+", num2, "=", add(num1, num2))
+        elif choice == "divide":
+            print(num1, "/", num2, "=", divide(num1, num2))
+        elif choice == "subtract":
+            print(num1, "-", num2, "=", subtract(num1, num2))
+        elif choice == "power_root":
+            print(num1, "**", num2, "=", power_root(num1, num2))
+        next_calculation = input(
+            f"let's do next calculation yes/no \n y/n or Kyllä/Ei")
+        if next_calculation in ("no, ei, n"):
+            print("Goodbye!")
+            break
+        print()
+    else:
+        print("Invalid Choiced!")
+
+      
+def memory():
+
+    # colorcode      
+    RED = '\033[91m'
+
+
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'
+MAGENTA = '\033[95m'
+CYAN = '\033[96m'
+RESET = '\033[0m'  # 
